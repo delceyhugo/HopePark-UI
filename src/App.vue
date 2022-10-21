@@ -10,18 +10,21 @@ const store = ref({
   price: '146.400',
   isFree: false
 })
+let showProperty = ref(false)
 
 
-
-let hydrateData = (data)=>{
-  store.value.name = data.name,
-  store.value.happiness = data.happiness,
-  store.value.income = data.income,
-  store.value.price = data.price,
-  store.value.isFree = data.isFree
-}
-let test1 = () =>{
-  console.log('test');
+window.app = {
+  property : (data) => {
+    showProperty.value = true
+    store.value.name = data.name,
+    store.value.happiness = data.happiness,
+    store.value.income = data.income,
+    store.value.price = data.price,
+    store.value.isFree = data.isFree
+  },
+  test : () => {
+    console.log('test')
+  }
 }
 
 
@@ -33,7 +36,7 @@ let test1 = () =>{
 <template>
   <header>
     <div class="wrapper">
-      <Properties :test='store'/>
+      <Properties v-if="showProperty" :test='store'/>
     </div>
   </header>
 </template>
